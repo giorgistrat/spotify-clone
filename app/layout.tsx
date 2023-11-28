@@ -3,6 +3,7 @@ import { Figtree } from 'next/font/google';
 import './globals.css';
 
 import Sidebar from '@/components/Sidebar';
+import Player from '@/components/Player';
 
 import SupabaseProvider from '@/providers/SupabaseProvider';
 import UserProvider from '@/providers/UserProvider';
@@ -25,7 +26,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const userSongs = await getSongsByUserId()
+  const userSongs = await getSongsByUserId();
 
   return (
     <html lang="en">
@@ -35,6 +36,7 @@ export default async function RootLayout({
           <UserProvider>
             <ModalProvider />
             <Sidebar songs={userSongs}>{children}</Sidebar>
+            <Player />
           </UserProvider>
         </SupabaseProvider>
       </body>
